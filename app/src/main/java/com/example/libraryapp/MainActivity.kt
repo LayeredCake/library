@@ -16,11 +16,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val arrayAdapter = ArrayAdapter<String> (this, android.R.layout.simple_list_item_1, books)
-        val listView: ListView = findViewById(R.id.listView)
-        listView.adapter = arrayAdapter
-        val intent = Intent(this, InsertBookActivity::class.java)
-        startActivity(intent)
     }
 
 }
