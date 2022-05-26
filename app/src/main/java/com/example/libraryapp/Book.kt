@@ -1,5 +1,5 @@
-package layout
+package com.example.libraryapp
 
-data class Book(val title: String){
+data class Book(val title: String, val author: String){
 
 }
