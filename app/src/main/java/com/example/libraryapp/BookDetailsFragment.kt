@@ -8,6 +8,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModel
+import androidx.fragment.app.viewModels
+import com.example.libraryapp.databinding.FragmentBookDetailsBinding
+
 
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
@@ -30,20 +33,23 @@ class BookDetailsFragment : Fragment() {
         }
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_book_details, container, false)
-        val textView: TextView = view.findViewById(R.id.text)
+        // Inflate the layout for this fragment
+        val binding = FragmentBookDetailsBinding.inflate(layoutInflater, container, false)
+
+        val model: BookDetailViewModel by viewModels()
+
         val main_activity : MainActivity = getActivity() as MainActivity
-        textView.text = main_activity.books[arguments?.getInt("book_id") as Int].title
-        return view
+        model.book = main_activity.books[arguments?.getInt("book_id") as Int]
+        binding.viewModel = model
+
+        return binding.root
     }
 
-
-        companion object {
+    companion object {
         /**
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.
@@ -51,6 +57,7 @@ class BookDetailsFragment : Fragment() {
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
          * @return A new instance of fragment BookDetailsFragment.
+
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
