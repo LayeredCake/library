@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModel
+import com.example.libraryapp.Book
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.MutableLiveData
 import com.example.libraryapp.databinding.FragmentBookDetailsBinding
 
 
@@ -43,7 +45,8 @@ class BookDetailsFragment : Fragment() {
         val model: BookDetailViewModel by viewModels()
 
         val main_activity : MainActivity = getActivity() as MainActivity
-        model.book = main_activity.books[arguments?.getInt("book_id") as Int]
+        val book: Book = main_activity.books[arguments?.getInt("book_id") as Int]
+        model.book = MutableLiveData<Book>(book)
         binding.viewModel = model
 
         return binding.root

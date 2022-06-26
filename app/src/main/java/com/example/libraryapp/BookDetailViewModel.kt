@@ -5,6 +5,6 @@ import androidx.lifecycle.ViewModel
 
 class BookDetailViewModel : ViewModel() {
 
-    val book: MutableLiveData<Book> = MutableLiveData<Book>(Book("Exhalation", "Ted Chiang"))
+    var book: MutableLiveData<Book> = MutableLiveData<Book>(Book("Exhalation", "Ted Chiang"))
 
 }
