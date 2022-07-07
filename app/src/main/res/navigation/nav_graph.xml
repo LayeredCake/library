@@ -9,7 +9,11 @@
         android:id="@+id/insertBookFragment"
         android:name="com.example.libraryapp.InsertBookFragment"
         android:label="fragment_insert_book"
-        tools:layout="@layout/fragment_insert_book" />
+        tools:layout="@layout/fragment_insert_book" >
+        <action
+            android:id="@+id/action_create_book"
+            app:destination="@id/titleScreenFragment"/>
+    </fragment>
     <fragment
         android:id="@+id/titleScreenFragment"
         android:name="com.example.libraryapp.TitleScreenFragment"
