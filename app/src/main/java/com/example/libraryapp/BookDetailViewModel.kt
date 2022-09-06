@@ -1,10 +1,11 @@
 package com.example.libraryapp
 
+import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class BookDetailViewModel : ViewModel() {
+class BookDetailViewModel(val repository: BooksRepository, val id: Int) : ViewModel() {
 
-    var book: MutableLiveData<Book> = MutableLiveData<Book>(Book("Exhalation", "Ted Chiang"))
+    val book : Book get() { return repository.getBook(id) }
 
 }
