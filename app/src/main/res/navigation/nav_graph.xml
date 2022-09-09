@@ -16,9 +16,9 @@
     </fragment>
     <fragment
         android:id="@+id/titleScreenFragment"
-        android:name="com.example.libraryapp.TitleScreenFragment"
+        android:name="com.example.libraryapp.BookListFragment"
         android:label="fragment_title_screen"
-        tools:layout="@layout/fragment_title_screen" >
+        tools:layout="@layout/fragment_book_list" >
         <action
             android:id="@+id/action_new_book"
             app:destination="@id/insertBookFragment" />
