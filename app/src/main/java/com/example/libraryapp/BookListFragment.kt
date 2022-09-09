@@ -12,9 +12,6 @@ import androidx.navigation.findNavController
 
 class BookListFragment : Fragment() {
 
-    val books = arrayOf<Book>(Book("The Graveyard Book", "Neil Gaiman"), Book("The Martian", "Andy Weir"), Book("Mistborn", "Brandon Sanderson"), Book("Great Expectations", "Charles Dickens"))
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -23,7 +20,10 @@ class BookListFragment : Fragment() {
 
 
         val listView: ListView = view.findViewById(R.id.listView)
-        val textView: TextView = view.findViewById(R.id.textView)
+
+
+        val main_activity : MainActivity = getActivity() as MainActivity
+        val books = main_activity.rep.getBooks().toTypedArray()
 
         val arrayAdapter = getActivity()?.let { ArrayAdapter<Book> (it.getApplicationContext(), android.R.layout.simple_list_item_1, books) }
 

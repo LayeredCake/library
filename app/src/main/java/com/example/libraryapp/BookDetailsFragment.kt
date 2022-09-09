@@ -29,6 +29,8 @@ class BookDetailsFragment : Fragment() {
 
         val main_activity : MainActivity = getActivity() as MainActivity
 
+        main_activity.rep.addBook(Book("Mona Lisa Overdrive", "William Gibson"))
+
         //val model: BookDetailViewModel by viewModels(arguments?.getInt("book_id") as Int)
         val model: BookDetailViewModel by viewModels { BookDetailViewModelFactory(main_activity.rep, arguments?.getInt("book_id") as Int)}
 

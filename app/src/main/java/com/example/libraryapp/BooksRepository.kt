@@ -7,6 +7,10 @@ class BooksRepository() {
         return books
     }
 
+    fun addBook(newBook: Book) {
+        books.add(newBook)
+    }
+
     fun getBook(id: Int): Book {
         return books[id]
     }
