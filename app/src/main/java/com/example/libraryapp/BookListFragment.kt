@@ -9,6 +9,7 @@ import android.widget.*
 import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 
+import androidx.navigation.Navigation
 
 class BookListFragment : Fragment() {
 
@@ -36,7 +37,15 @@ class BookListFragment : Fragment() {
             view.findNavController().navigate(R.id.bookDetailsFragment, bundle)
         }
 
+        val button: Button = view.findViewById(R.id.buttonNewBook)
+        button.setOnClickListener() {
+            Navigation.findNavController(view).navigate(R.id.action_new_book)
+        }
+
         return view
     }
 
+    companion object {
+
+    }
 }

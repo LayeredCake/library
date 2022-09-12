@@ -17,15 +17,30 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim">
+            <argument
+            android:name="book_id"
+            app:argType="integer" />
         </action>
+
+        <action
+            android:id="@+id/action_new_book"
+            app:destination="@id/insertBookFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/bookDetailsFragment"
         android:name="com.example.libraryapp.BookDetailsFragment"
         android:label="fragment_book_details"
-        tools:layout="@layout/fragment_book_details">
-        <argument
-            android:name="book_id"
-            app:argType="integer" />
+        tools:layout="@layout/fragment_book_details"/>
+
+    <fragment
+        android:id="@+id/insertBookFragment"
+        android:name="com.example.libraryapp.InsertBookFragment"
+        android:label="fragment_insert_book"
+        tools:layout="@layout/fragment_insert_book" >
+        <action
+            android:id="@+id/action_create_book"
+            app:destination="@id/bookListFragment"/>
     </fragment>
+
 </navigation>
