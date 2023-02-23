@@ -14,4 +14,8 @@ class BooksRepository() {
     fun getBook(id: Int): Book {
         return books[id]
     }
+
+    fun delBook(id: Int) {
+        books.removeAt(id);
+    }
 }

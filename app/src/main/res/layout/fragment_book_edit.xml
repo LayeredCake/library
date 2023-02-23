@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable name="viewModel" type="com.example.libraryapp.BookEditViewModel"/>
+    </data>
+
+    <LinearLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".InsertBookFragment">
+
+    <EditText
+            android:id="@+id/txtTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/title"
+            android:inputType="text"
+            android:importantForAutofill="no"
+            android:text="@={viewModel.title}"/>
+
+        <EditText
+            android:id="@+id/txtAuthor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/author"
+            android:inputType="text"
+            android:importantForAutofill="no"
+            android:text="@={viewModel.author}"/>
+
+        <Button
+            android:id="@+id/buttonUpdateBook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="@string/update_book" />
+
+        <Button
+            android:id="@+id/buttonDeleteBook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="@string/delete_book" />
+
+    </LinearLayout>
+</layout>

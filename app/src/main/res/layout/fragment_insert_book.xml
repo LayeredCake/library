@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".InsertBookFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -15,6 +16,15 @@
         android:inputType="text"
         android:importantForAutofill="no" />
 
+
+    <EditText
+        android:id="@+id/txtAuthor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/string_author"
+        android:inputType="text"
+        android:importantForAutofill="no" />
+
     <Button
         android:id="@+id/buttonCreateBook"
         android:layout_width="wrap_content"
@@ -22,4 +32,4 @@
         android:layout_marginStart="5dp"
         android:text="@string/create_book" />
 
-</FrameLayout>
+</LinearLayout>
