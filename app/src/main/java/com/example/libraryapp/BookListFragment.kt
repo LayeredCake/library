@@ -17,7 +17,7 @@ import androidx.navigation.Navigation
 
 class BookListFragment : Fragment() {
 
-    var books = arrayOf<Book>(Book("The Graveyard Book", "Neil Gaiman"), Book("The Martian", "Andy Weir"), Book("Mistborn", "Brandon Sanderson"), Book("Great Expectations", "Charles Dickens"))
+    var books = arrayOf<Book>()
 
     private fun getBookList() {
         val client = APIClient().getRetrofitClient().create(APIInterface::class.java)
@@ -63,9 +63,10 @@ class BookListFragment : Fragment() {
             */
             val arrayAdapter = getActivity()?.let { ArrayAdapter<Book> (it.getApplicationContext(), android.R.layout.simple_list_item_1, books) }
 
+            listView.adapter = arrayAdapter
+
             getBookList()
 
-            listView.adapter = arrayAdapter
 
             listView.setOnItemClickListener { parent, view, position, id ->
 

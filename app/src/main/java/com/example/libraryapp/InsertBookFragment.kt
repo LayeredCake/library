@@ -23,7 +23,7 @@ class InsertBookFragment : Fragment() {
         val titleText: EditText = view.findViewById(R.id.txtTitle)
         val authorText: EditText = view.findViewById(R.id.txtAuthor)
         button.setOnClickListener() {
-            main_activity.rep.addBook(Book(titleText.getText().toString(), authorText.getText().toString()))
+            main_activity.rep.newBook(Book(titleText.getText().toString(), authorText.getText().toString(), null))
             Navigation.findNavController(view).navigate(R.id.action_create_book)
         }
         return view

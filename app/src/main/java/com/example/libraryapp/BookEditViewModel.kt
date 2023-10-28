@@ -23,18 +23,23 @@ class BookEditViewModel(val repository: BooksRepository, val id: Int) : ViewMode
 
     fun setTitle(title: String) {
         if(repository.getBook(id).title != title) {
-            repository.getBook(id).title = title
+            val book: Book = repository.getBook(id)
+            book.title = title
+
+            repository.updateBook(book.id!!, book)
         }
     }
 
     fun setAuthor(author: String) {
         if(repository.getBook(id).author != author) {
-            repository.getBook(id).author = author
+            val book: Book = repository.getBook(id)
+            book.author = author
+            repository.updateBook(book.id!!, book)
         }
     }
 
     fun delBook() {
-        repository.delBook(id)
+        repository.delBook(repository.getBook(id).id!!)
     }
 
 }
