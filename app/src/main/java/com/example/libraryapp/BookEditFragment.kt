@@ -17,34 +17,39 @@ import androidx.lifecycle.MutableLiveData
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import com.example.libraryapp.databinding.FragmentBookDetailsBinding
+import com.example.libraryapp.databinding.FragmentBookEditBinding
 
-/**
- * A simple [Fragment] subclass.
- * Use the [BookDetailsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class BookDetailsFragment : Fragment() {
+
+class BookEditFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val book_id = arguments?.getInt("book_id") as Int
-        val binding = FragmentBookDetailsBinding.inflate(inflater, container, false)
+        val binding = FragmentBookEditBinding.inflate(inflater, container, false)
 
+        val book_id = arguments?.getInt("book_id") as Int
         val main_activity : MainActivity = getActivity() as MainActivity
+
+        val model: BookEditViewModel by viewModels { BookEditViewModelFactory(main_activity.rep, arguments?.getInt("book_id") as Int)}
 
         val view: View = binding.root
 
-        val button: Button = view.findViewById(R.id.buttonEditBook)
-        button.setOnClickListener() {
+        val update_button: Button = view.findViewById(R.id.buttonUpdateBook)
+        val delete_button: Button = view.findViewById(R.id.buttonDeleteBook)
+        //val title: EditText = view.findViewById(R.id.txtTitle)
+        //val author: EditText = view.findViewById(R.id.txtAuthor)
+        update_button.setOnClickListener() {
+            //main_activity.rep.updateBook(Book(text.getText().toString(), "author"))
             val bundle = bundleOf("book_id" to book_id)
             //Navigation.findNavController(view).navigate(R.id.action_book_edit, bundle)
-            view.findNavController().navigate(R.id.editBookFragment, bundle)
+            view.findNavController().navigate(R.id.bookDetailsFragment, bundle)
         }
-
-        val model: BookDetailViewModel by viewModels { BookDetailViewModelFactory(main_activity.rep, book_id)}
+        delete_button.setOnClickListener() {
+            model.delBook()
+            Navigation.findNavController(view).navigate(R.id.action_book_delete)
+        }
 
         binding.viewModel = model
 

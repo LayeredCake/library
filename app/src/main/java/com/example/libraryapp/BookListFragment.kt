@@ -1,5 +1,6 @@
 package com.example.libraryapp
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,11 +9,34 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
+import androidx.navigation.Navigation
 
 class BookListFragment : Fragment() {
 
-    val books = arrayOf<Book>(Book("The Graveyard Book", "Neil Gaiman"), Book("The Martian", "Andy Weir"), Book("Mistborn", "Brandon Sanderson"), Book("Great Expectations", "Charles Dickens"))
+    var books = arrayOf<Book>()
+
+    private fun getBookList() {
+        val client = APIClient().getRetrofitClient().create(APIInterface::class.java)
+
+        client.getBooks().enqueue(object: Callback<Array<Book>> {
+            override fun onResponse(call: Call<Array<Book>>, response: Response<Array<Book>>) {
+                books = response.body() as Array<Book>
+
+                val main_activity : MainActivity = getActivity() as MainActivity
+                main_activity.updateBooks(books)
+                val listView: ListView? = view?.findViewById(R.id.listView)
+                val arrayAdapter = getActivity()?.let { ArrayAdapter<Book> (it.getApplicationContext(), android.R.layout.simple_list_item_1, books) }
+                listView?.adapter = arrayAdapter
+            }
+            override fun onFailure(call: Call<Array<Book>>, t: Throwable) {
+                throw t
+            }
+        })
+    }
 
 
     override fun onCreateView(
@@ -23,17 +47,37 @@ class BookListFragment : Fragment() {
 
 
         val listView: ListView = view.findViewById(R.id.listView)
-        val textView: TextView = view.findViewById(R.id.textView)
 
-        val arrayAdapter = getActivity()?.let { ArrayAdapter<Book> (it.getApplicationContext(), android.R.layout.simple_list_item_1, books) }
+        val app_context: Context? = this.context
 
-        listView.adapter = arrayAdapter
+        if(app_context != null) {
+            /*
+            val arrayAdapter = activity?.let {
+                BookAdapter(
+                    app_context,
+                    android.R.layout.activity_list_item,
+                    books
+                )
+            }
+            */
+            val arrayAdapter = getActivity()?.let { ArrayAdapter<Book> (it.getApplicationContext(), android.R.layout.simple_list_item_1, books) }
 
-        listView.setOnItemClickListener { parent, view, position, id ->
+            listView.adapter = arrayAdapter
 
-            val index = position
-            val bundle = bundleOf("book_id" to index)
-            view.findNavController().navigate(R.id.bookDetailsFragment, bundle)
+            getBookList()
+
+
+            listView.setOnItemClickListener { parent, view, position, id ->
+
+                val index = position
+                val bundle = bundleOf("book_id" to index)
+                view.findNavController().navigate(R.id.bookDetailsFragment, bundle)
+            }
+        }
+
+        val button: Button = view.findViewById(R.id.buttonNewBook)
+        button.setOnClickListener() {
+            Navigation.findNavController(view).navigate(R.id.action_new_book)
         }
 
         return view
