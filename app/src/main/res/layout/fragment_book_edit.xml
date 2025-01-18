@@ -12,7 +12,7 @@
         android:orientation="vertical"
         tools:context=".InsertBookFragment">
 
-    <EditText
+        <EditText
             android:id="@+id/txtTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -29,6 +29,69 @@
             android:inputType="text"
             android:importantForAutofill="no"
             android:text="@={viewModel.author}"/>
+
+        <EditText
+            android:id="@+id/txtSeries"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Series"
+            android:inputType="text"
+            android:importantForAutofill="no"
+            android:text="@={viewModel.series}"/>
+
+        <EditText
+            android:id="@+id/txtPageCount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Page Count"
+            android:inputType="number"
+            android:importantForAutofill="no"
+            android:text="@={viewModel.pageCount}"/>
+
+        <EditText
+            android:id="@+id/txtOwner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Owner"
+            android:inputType="text"
+            android:importantForAutofill="no"
+            android:text="@={viewModel.owner}"/>
+
+        <EditText
+            android:id="@+id/txtGenre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Genre"
+            android:inputType="text"
+            android:importantForAutofill="no"
+            android:text="@={viewModel.genre}"/>
+
+        <EditText
+            android:id="@+id/txtCurrentHolder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Current Holder"
+            android:inputType="text"
+            android:importantForAutofill="no"
+            android:text="@={viewModel.currentHolder}"/>
+
+        <EditText
+            android:id="@+id/txtCondition"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Condition"
+            android:inputType="text"
+            android:importantForAutofill="no"
+            android:text="@={viewModel.condition}"/>
+
+        <EditText
+            android:id="@+id/txtFormat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Format"
+            android:inputType="text"
+            android:importantForAutofill="no"
+            android:text="@={viewModel.format}"/>
 
         <Button
             android:id="@+id/buttonUpdateBook"

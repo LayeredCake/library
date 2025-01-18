@@ -55,7 +55,7 @@
     <fragment
         android:id="@+id/editBookFragment"
         android:name="com.example.libraryapp.BookEditFragment"
-        android:label="fragment_insert_book"
+        android:label="fragment_edit_book"
         tools:layout="@layout/fragment_book_edit" >
         <action
             android:id="@+id/action_update_book"

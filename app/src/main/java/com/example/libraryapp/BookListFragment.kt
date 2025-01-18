@@ -36,7 +36,6 @@ class BookListFragment : Fragment() {
                 throw t
             }
         })
-
     }
 
 
@@ -84,7 +83,4 @@ class BookListFragment : Fragment() {
         return view
     }
 
-    companion object {
-
-    }
 }

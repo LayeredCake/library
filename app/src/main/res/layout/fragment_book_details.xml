@@ -30,12 +30,68 @@
             app:layout_constraintTop_toBottomOf="@+id/titleView"
             tools:layout_editor_absoluteX="0dp" />
 
+        <TextView
+            android:id="@+id/seriesView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{`Series: ` + viewModel.book.series}"
+            app:layout_constraintTop_toBottomOf="@+id/authorView"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <TextView
+            android:id="@+id/pageCountView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{`Page Count: ` + viewModel.book.pageCount}"
+            app:layout_constraintTop_toBottomOf="@+id/seriesView"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <TextView
+            android:id="@+id/ownerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{`Owner: ` + viewModel.book.owner}"
+            app:layout_constraintTop_toBottomOf="@+id/pageCountView"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <TextView
+            android:id="@+id/genreView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{`Genre: ` + viewModel.book.genre}"
+            app:layout_constraintTop_toBottomOf="@+id/ownerView"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <TextView
+            android:id="@+id/currentHolderView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{`Current Holder: ` + viewModel.book.currentHolder}"
+            app:layout_constraintTop_toBottomOf="@+id/genreView"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <TextView
+            android:id="@+id/conditionView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{`Condition: ` + viewModel.book.condition}"
+            app:layout_constraintTop_toBottomOf="@+id/currentHolderView"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <TextView
+            android:id="@+id/formatView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{`Format: ` + viewModel.book.format}"
+            app:layout_constraintTop_toBottomOf="@+id/conditionView"
+            tools:layout_editor_absoluteX="0dp" />
+
         <Button
             android:id="@+id/buttonEditBook"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/editbook"
-            app:layout_constraintTop_toBottomOf="@+id/authorView"
+            app:layout_constraintTop_toBottomOf="@+id/formatView"
             tools:layout_constraintLeft_toLeftOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

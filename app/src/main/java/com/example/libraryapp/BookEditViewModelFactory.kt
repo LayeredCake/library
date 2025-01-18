@@ -8,7 +8,6 @@ class BookEditViewModelFactory(val repository: BooksRepository, val id: Int): Vi
 
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-
         return modelClass.getConstructor(BooksRepository::class.java, Int::class.java).newInstance(repository, id)
     }
 

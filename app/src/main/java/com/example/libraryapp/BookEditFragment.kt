@@ -38,8 +38,8 @@ class BookEditFragment : Fragment() {
 
         val update_button: Button = view.findViewById(R.id.buttonUpdateBook)
         val delete_button: Button = view.findViewById(R.id.buttonDeleteBook)
-        val title: EditText = view.findViewById(R.id.txtTitle)
-        val author: EditText = view.findViewById(R.id.txtAuthor)
+        //val title: EditText = view.findViewById(R.id.txtTitle)
+        //val author: EditText = view.findViewById(R.id.txtAuthor)
         update_button.setOnClickListener() {
             //main_activity.rep.updateBook(Book(text.getText().toString(), "author"))
             val bundle = bundleOf("book_id" to book_id)

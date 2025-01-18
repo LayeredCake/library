@@ -8,9 +8,4 @@ class BookDetailViewModel(val repository: BooksRepository, val id: Int) : ViewMo
 
     val book : Book get() { return repository.getBook(id) }
 
-    /*
-    fun deleteBook() {
-        repository.deleteBook(id)
-    }
-    */
 }
