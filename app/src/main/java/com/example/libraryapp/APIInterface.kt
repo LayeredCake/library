@@ -1,18 +1,22 @@
 package com.example.libraryapp
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.*
 
 
 interface APIInterface {
     @GET("Books")
-    fun getBooks(): Call<Array<Book>>
+    suspend fun getBooks(): Array<Book>
+
+    @GET("Books/{id}")
+    suspend fun getBook(@Path("id") id: Int): Book
 
     @PUT("Books/{id}")
-    fun putBook(@Path("id") id: Int, @Body book: Book): Call<Book>
+    suspend fun putBook(@Path("id") id: Int, @Body book: Book): Response<Unit>
 
     @DELETE("Books/{id}")
-    fun delBook(@Path("id") id: Int): Call<Void>
+    suspend fun delBook(@Path("id") id: Int): Response<Unit>
 
     @POST("Books")
-    fun postBook(@Body book: Book): Call<Book>
+    suspend fun postBook(@Body book: Book): Book
 }

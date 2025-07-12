@@ -2,63 +2,34 @@ package com.example.libraryapp
 
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import androidx.lifecycle.LiveData
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class BooksRepository() {
-    private val books: MutableList<Book> = mutableListOf()
+class BooksRepository(private val bookDataSource: BookDataSource) {
 
-    fun getBooks(): MutableList<Book> {
-        return books
+    suspend fun getBookList(): Array<Book> {
+        return bookDataSource.getBooks()
     }
 
-    fun updateBooks(newList: Array<Book>) {
-        books.clear()
-        books.addAll(newList)
+    suspend fun getBook(id: Int): Book {
+        return bookDataSource.getBook(id)
     }
 
-    fun updateBook(int: Int, book: Book) {
-
-        val client = APIClient().getRetrofitClient().create(APIInterface::class.java)
-
-        client.putBook(int, book).enqueue(object: Callback<Book> {
-            override fun onResponse(call: Call<Book>, response: Response<Book>) {
-            }
-
-            override fun onFailure(call: Call<Book>, t: Throwable) {
-                throw t
-            }
-        })
+    suspend fun updateBook(int: Int, book: Book) {
+        bookDataSource.updateBook(int, book)
     }
 
-    fun newBook(book: Book) {
-        val client = APIClient().getRetrofitClient().create(APIInterface::class.java)
-
-        client.postBook(book).enqueue(object: Callback<Book> {
-            override fun onResponse(call: Call<Book>, response: Response<Book>) {
-            }
-
-            override fun onFailure(call: Call<Book>, t: Throwable) {
-                throw t
-            }
-        })
+    suspend fun newBook(book: Book) {
+        bookDataSource.newBook(book)
     }
 
-    fun getBook(id: Int): Book {
-        return books[id]
-    }
-
-    fun delBook(int: Int) {
-        val client = APIClient().getRetrofitClient().create(APIInterface::class.java)
-
-        client.delBook(int).enqueue(object: Callback<Void> {
-            override fun onResponse(call: Call<Void>, response: Response<Void>) {
-            }
-
-            override fun onFailure(call: Call<Void>, t: Throwable) {
-                throw t
-            }
-        })
+    suspend fun delBook(int: Int) {
+        bookDataSource.delBook(int)
     }
 }

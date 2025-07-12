@@ -6,10 +6,10 @@ data class Book(
     var series: String,
     var pageCount: Int,
     var owner: String,
-    var genre: String,
+    var genre: Int,
     var currentHolder: String,
-    var condition: String,
-    var format: String,
+    var condition: Int,
+    var format: Int,
     var id: Int?
 ){
 

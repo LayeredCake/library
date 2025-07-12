@@ -15,17 +15,13 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
-    var books = arrayOf<Book>()
+    val api: APIInterface = APIClient().getRetrofitClient().create(APIInterface::class.java)
 
-    val rep: BooksRepository = BooksRepository()
+    val rep: BooksRepository = BooksRepository(BookDataSource(api))
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-    }
-
-    fun updateBooks(newBooks: Array<Book>) {
-        rep.updateBooks(newBooks)
     }
 }

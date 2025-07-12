@@ -14,10 +14,15 @@ import androidx.lifecycle.ViewModel
 import com.example.libraryapp.Book
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import com.example.libraryapp.databinding.FragmentBookDetailsBinding
 import com.example.libraryapp.databinding.FragmentBookEditBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 
 class BookEditFragment : Fragment() {
@@ -26,6 +31,7 @@ class BookEditFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         // Inflate the layout for this fragment
         val binding = FragmentBookEditBinding.inflate(inflater, container, false)
 
@@ -44,16 +50,24 @@ class BookEditFragment : Fragment() {
             //main_activity.rep.updateBook(Book(text.getText().toString(), "author"))
             val bundle = bundleOf("book_id" to book_id)
             //Navigation.findNavController(view).navigate(R.id.action_book_edit, bundle)
-            view.findNavController().navigate(R.id.bookDetailsFragment, bundle)
+            //Dispatchers.IO causing navigation error
+            GlobalScope.launch(Dispatchers.Main){
+                model.update()
+                view.findNavController().navigate(R.id.bookDetailsFragment, bundle)
+            }
         }
         delete_button.setOnClickListener() {
-            model.delBook()
-            Navigation.findNavController(view).navigate(R.id.action_book_delete)
+            GlobalScope.launch(Dispatchers.IO) {
+                model.delBook()
+                Navigation.findNavController(view).navigate(R.id.action_book_delete)
+            }
         }
 
         binding.viewModel = model
+        binding.lifecycleOwner = this
 
         return binding.root
+
     }
 
     companion object {

@@ -1,6 +1,7 @@
 package com.example.libraryapp
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -47,6 +48,7 @@ class BookDetailsFragment : Fragment() {
         val model: BookDetailViewModel by viewModels { BookDetailViewModelFactory(main_activity.rep, book_id)}
 
         binding.viewModel = model
+        binding.lifecycleOwner = this
 
         return binding.root
     }

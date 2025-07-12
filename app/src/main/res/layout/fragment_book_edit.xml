@@ -62,7 +62,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Genre"
-            android:inputType="text"
+            android:inputType="number"
             android:importantForAutofill="no"
             android:text="@={viewModel.genre}"/>
 
@@ -80,7 +80,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Condition"
-            android:inputType="text"
+            android:inputType="number"
             android:importantForAutofill="no"
             android:text="@={viewModel.condition}"/>
 
@@ -89,7 +89,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Format"
-            android:inputType="text"
+            android:inputType="number"
             android:importantForAutofill="no"
             android:text="@={viewModel.format}"/>
 
