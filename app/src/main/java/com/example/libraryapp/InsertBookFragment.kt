@@ -8,6 +8,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import androidx.navigation.Navigation
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class InsertBookFragment : Fragment() {
 
@@ -30,20 +33,25 @@ class InsertBookFragment : Fragment() {
         val conditionText: EditText = view.findViewById(R.id.txtCondition)
         val formatText: EditText = view.findViewById((R.id.txtFormat))
 
-        button.setOnClickListener() {
-            main_activity.rep.newBook(Book(
-                titleText.getText().toString(),
-                authorText.getText().toString(),
-                seriesText.getText().toString(),
-                pageCountText.getText().toString().toInt(),
-                ownerText.getText().toString(),
-                genreText.getText().toString(),
-                currentHolderText.getText().toString(),
-                conditionText.getText().toString(),
-                formatText.getText().toString(),
-                null))
+        fun newBook() = runBlocking {
+            launch {
+                main_activity.rep.newBook(Book(
+                    titleText.getText().toString(),
+                    authorText.getText().toString(),
+                    seriesText.getText().toString(),
+                    pageCountText.getText().toString().toInt(),
+                    ownerText.getText().toString(),
+                    genreText.getText().toString().toInt(),
+                    currentHolderText.getText().toString(),
+                    conditionText.getText().toString().toInt(),
+                    formatText.getText().toString().toInt(),
+                    null))
+                Navigation.findNavController(view).navigate(R.id.action_create_book)
+            }
+        }
 
-            Navigation.findNavController(view).navigate(R.id.action_create_book)
+        button.setOnClickListener() {
+            newBook()
         }
         return view
     }

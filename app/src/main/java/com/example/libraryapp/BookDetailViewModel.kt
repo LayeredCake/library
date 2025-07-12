@@ -1,11 +1,18 @@
 package com.example.libraryapp
 
 import android.app.Application
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import android.util.Log
+import androidx.lifecycle.*
+import kotlinx.coroutines.launch
 
 class BookDetailViewModel(val repository: BooksRepository, val id: Int) : ViewModel() {
 
-    val book : Book get() { return repository.getBook(id) }
+    private val _book = MutableLiveData<Book>()
+    val book: LiveData<Book> = _book
 
+    init {
+        viewModelScope.launch {
+            _book.value = repository.getBook(id)
+        }
+    }
 }
