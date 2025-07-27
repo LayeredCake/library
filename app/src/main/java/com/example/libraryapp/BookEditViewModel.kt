@@ -1,10 +1,6 @@
 package com.example.libraryapp
 
-import android.app.Application
-import androidx.databinding.BaseObservable
-import androidx.databinding.Bindable
 import androidx.lifecycle.*
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 class BookEditViewModel(val repository: BooksRepository, val id: Int) : ViewModel() {
@@ -14,11 +10,10 @@ class BookEditViewModel(val repository: BooksRepository, val id: Int) : ViewMode
     var series = MutableLiveData<String>()
     var pageCount = MutableLiveData<String>()
     var owner = MutableLiveData<String>()
-    var genre = MutableLiveData<String>()
+    var genre = MutableLiveData<Int>()
     var currentHolder = MutableLiveData<String>()
-    var condition = MutableLiveData<String>()
-    var format = MutableLiveData<String>()
-
+    var condition = MutableLiveData<Int>()
+    var format = MutableLiveData<Int>()
 
     init {
         viewModelScope.launch {
@@ -28,15 +23,15 @@ class BookEditViewModel(val repository: BooksRepository, val id: Int) : ViewMode
             series.value = book.series
             pageCount.value = book.pageCount.toString()
             owner.value = book.owner
-            genre.value = book.genre.toString()
+            genre.value = book.genre
             currentHolder.value = book.currentHolder
-            condition.value = book.condition.toString()
-            format.value = book.format.toString()
+            condition.value = book.condition
+            format.value = book.format
         }
     }
 
     suspend fun update() {
-        val updatedBook = Book(title.value!!, author.value!!, series.value!!, pageCount.value!!.toInt(), owner.value!!, genre.value!!.toInt(), currentHolder.value!!, condition.value!!.toInt(), format.value!!.toInt(), id)
+        val updatedBook = Book(title.value!!, author.value!!, series.value!!, pageCount.value!!.toInt(), owner.value!!, genre.value!!, currentHolder.value!!, condition.value!!, format.value!!, id)
         repository.updateBook(id, updatedBook)
     }
 

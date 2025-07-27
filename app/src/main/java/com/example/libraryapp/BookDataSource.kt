@@ -1,10 +1,8 @@
 package com.example.libraryapp
 
-import android.util.Log
 
 class BookDataSource(
     private val api: APIInterface,
-    private val refreshIntervalMs: Long = 5000
 ) {
 
 
