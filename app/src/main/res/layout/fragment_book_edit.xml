@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable name="viewModel" type="com.example.libraryapp.BookEditViewModel"/>
@@ -39,14 +40,6 @@
             android:importantForAutofill="no"
             android:text="@={viewModel.series}"/>
 
-        <EditText
-            android:id="@+id/txtPageCount"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Page Count"
-            android:inputType="number"
-            android:importantForAutofill="no"
-            android:text="@={viewModel.pageCount}"/>
 
         <EditText
             android:id="@+id/txtOwner"
@@ -57,14 +50,13 @@
             android:importantForAutofill="no"
             android:text="@={viewModel.owner}"/>
 
-        <EditText
-            android:id="@+id/txtGenre"
+        <Spinner
+            android:id="@+id/spinnerGenre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Genre"
-            android:inputType="number"
-            android:importantForAutofill="no"
-            android:text="@={viewModel.genre}"/>
+            android:selectedItemPosition="@={viewModel.genre}"
+            android:entries="@array/genres_array"
+            />
 
         <EditText
             android:id="@+id/txtCurrentHolder"
@@ -75,23 +67,21 @@
             android:importantForAutofill="no"
             android:text="@={viewModel.currentHolder}"/>
 
-        <EditText
-            android:id="@+id/txtCondition"
+        <Spinner
+            android:id="@+id/spinnerCondition"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Condition"
-            android:inputType="number"
-            android:importantForAutofill="no"
-            android:text="@={viewModel.condition}"/>
+            android:selectedItemPosition="@={viewModel.condition}"
+            android:entries="@array/conditions_array"
+            />
 
-        <EditText
-            android:id="@+id/txtFormat"
+        <Spinner
+            android:id="@+id/spinnerFormat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Format"
-            android:inputType="number"
-            android:importantForAutofill="no"
-            android:text="@={viewModel.format}"/>
+            android:selectedItemPosition="@={viewModel.format}"
+            android:entries="@array/formats_array"
+            />
 
         <Button
             android:id="@+id/buttonUpdateBook"

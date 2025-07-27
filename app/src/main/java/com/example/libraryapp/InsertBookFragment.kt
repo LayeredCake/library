@@ -6,11 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
+import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
+import com.example.libraryapp.databinding.FragmentInsertBookBinding
+import kotlinx.coroutines.*
 
 class InsertBookFragment : Fragment() {
 
@@ -18,42 +17,26 @@ class InsertBookFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_insert_book, container, false)
+        val binding = FragmentInsertBookBinding.inflate(inflater, container, false)
+        val view: View = binding.root
 
         val main_activity : MainActivity = getActivity() as MainActivity
 
-        val button: Button = view.findViewById(R.id.buttonCreateBook)
-        val titleText: EditText = view.findViewById(R.id.txtTitle)
-        val authorText: EditText = view.findViewById(R.id.txtAuthor)
-        val seriesText: EditText = view.findViewById(R.id.txtSeries)
-        val pageCountText: EditText = view.findViewById(R.id.txtPageCount)
-        val ownerText: EditText = view.findViewById(R.id.txtOwner)
-        val genreText: EditText = view.findViewById(R.id.txtGenre)
-        val currentHolderText: EditText = view.findViewById(R.id.txtCurrentHolder)
-        val conditionText: EditText = view.findViewById(R.id.txtCondition)
-        val formatText: EditText = view.findViewById((R.id.txtFormat))
+        val model: InsertBookViewModel by viewModels { InsertBookViewModelFactory(main_activity.rep) }
 
-        fun newBook() = runBlocking {
-            launch {
-                main_activity.rep.newBook(Book(
-                    titleText.getText().toString(),
-                    authorText.getText().toString(),
-                    seriesText.getText().toString(),
-                    pageCountText.getText().toString().toInt(),
-                    ownerText.getText().toString(),
-                    genreText.getText().toString().toInt(),
-                    currentHolderText.getText().toString(),
-                    conditionText.getText().toString().toInt(),
-                    formatText.getText().toString().toInt(),
-                    null))
+        val button: Button = view.findViewById(R.id.buttonCreateBook)
+
+        button.setOnClickListener() {
+            GlobalScope.launch(Dispatchers.Main) {
+                model.add()
                 Navigation.findNavController(view).navigate(R.id.action_create_book)
             }
         }
 
-        button.setOnClickListener() {
-            newBook()
-        }
-        return view
+        binding.viewModel = model
+        binding.lifecycleOwner = this
+
+        return binding.root
     }
 
     companion object {

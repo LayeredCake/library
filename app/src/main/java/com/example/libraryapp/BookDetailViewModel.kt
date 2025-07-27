@@ -1,7 +1,5 @@
 package com.example.libraryapp
 
-import android.app.Application
-import android.util.Log
 import androidx.lifecycle.*
 import kotlinx.coroutines.launch
 
