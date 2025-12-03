@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LibraryAPI.Migrations
 {
-    [DbContext(typeof(BookContext))]
+    [DbContext(typeof(LibraryDbContext))]
     [Migration("20250712150507_StringValues")]
     partial class StringValues
     {

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LibraryAPI.Migrations
 {
-    [DbContext(typeof(BookContext))]
+    [DbContext(typeof(LibraryDbContext))]
     partial class BookContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -37,9 +37,8 @@ namespace LibraryAPI.Migrations
                     b.Property<int?>("Condition")
                         .HasColumnType("int");
 
-                    b.Property<string>("CurrentHolder")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("CurrentHolderId")
+                        .HasColumnType("int");
 
                     b.Property<int?>("Format")
                         .HasColumnType("int");
@@ -47,9 +46,8 @@ namespace LibraryAPI.Migrations
                     b.Property<int?>("Genre")
                         .HasColumnType("int");
 
-                    b.Property<string>("Owner")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("OwnerId")
+                        .HasColumnType("int");
 
                     b.Property<int?>("PageCount")
                         .HasColumnType("int");
@@ -64,7 +62,49 @@ namespace LibraryAPI.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CurrentHolderId");
+
+                    b.HasIndex("OwnerId");
+
                     b.ToTable("Books");
+                });
+
+            modelBuilder.Entity("LibraryAPI.Models.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("LibraryAPI.Models.Book", b =>
+                {
+                    b.HasOne("LibraryAPI.Models.User", "CurrentHolder")
+                        .WithMany()
+                        .HasForeignKey("CurrentHolderId");
+
+                    b.HasOne("LibraryAPI.Models.User", "Owner")
+                        .WithMany()
+                        .HasForeignKey("OwnerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CurrentHolder");
+
+                    b.Navigation("Owner");
                 });
 #pragma warning restore 612, 618
         }

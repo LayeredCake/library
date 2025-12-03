@@ -32,7 +32,7 @@ class BookListFragment : Fragment() {
             lifecycleScope.launch {
 
                 val main_activity : MainActivity = getActivity() as MainActivity
-                books = main_activity.rep.getBookList()
+                books = main_activity.booksRepository.getBookList()
                 val arrayAdapter = getActivity()?.let { ArrayAdapter<Book> (it.getApplicationContext(), android.R.layout.simple_list_item_1, books) }
 
                 listView.adapter = arrayAdapter

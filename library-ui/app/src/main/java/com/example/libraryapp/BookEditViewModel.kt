@@ -1,5 +1,6 @@
 package com.example.libraryapp
 
+import android.util.Log
 import androidx.lifecycle.*
 import kotlinx.coroutines.launch
 
@@ -9,9 +10,9 @@ class BookEditViewModel(val repository: BooksRepository, val id: Int) : ViewMode
     var title = MutableLiveData<String>()
     var series = MutableLiveData<String>()
     var pageCount = MutableLiveData<String>()
-    var owner = MutableLiveData<String>()
+    var owner = MutableLiveData<User>()
     var genre = MutableLiveData<Int>()
-    var currentHolder = MutableLiveData<String>()
+    var currentHolder = MutableLiveData<User>()
     var condition = MutableLiveData<Int>()
     var format = MutableLiveData<Int>()
 

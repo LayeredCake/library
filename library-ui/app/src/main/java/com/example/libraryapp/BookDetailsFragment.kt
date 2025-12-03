@@ -32,7 +32,7 @@ class BookDetailsFragment : Fragment() {
             view.findNavController().navigate(R.id.editBookFragment, bundle)
         }
 
-        val model: BookDetailViewModel by viewModels { BookDetailViewModelFactory(main_activity.rep, book_id)}
+        val model: BookDetailViewModel by viewModels { BookDetailViewModelFactory(main_activity.booksRepository, book_id)}
 
         binding.viewModel = model
         binding.lifecycleOwner = this

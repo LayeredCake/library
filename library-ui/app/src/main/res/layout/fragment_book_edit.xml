@@ -48,7 +48,7 @@
             android:hint="Owner"
             android:inputType="text"
             android:importantForAutofill="no"
-            android:text="@={viewModel.owner}"/>
+            android:text="@{viewModel.owner.username}"/>
 
         <Spinner
             android:id="@+id/spinnerGenre"
@@ -65,7 +65,7 @@
             android:hint="Current Holder"
             android:inputType="text"
             android:importantForAutofill="no"
-            android:text="@={viewModel.currentHolder}"/>
+            android:text="@={viewModel.currentHolder.username}"/>
 
         <Spinner
             android:id="@+id/spinnerCondition"
@@ -82,6 +82,20 @@
             android:selectedItemPosition="@={viewModel.format}"
             android:entries="@array/formats_array"
             />
+
+        <Button
+            android:id="@+id/buttonSelectOwner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="Select Owner" />
+
+        <Button
+            android:id="@+id/buttonSelectCurrentHolder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="Select Current Holder" />
 
         <Button
             android:id="@+id/buttonUpdateBook"

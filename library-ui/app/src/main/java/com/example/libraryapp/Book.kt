@@ -5,9 +5,9 @@ data class Book(
     var author: String,
     var series: String,
     var pageCount: Int,
-    var owner: String,
+    var owner: User?,
     var genre: Int,
-    var currentHolder: String,
+    var currentHolder: User?,
     var condition: Int,
     var format: Int,
     var id: Int?
