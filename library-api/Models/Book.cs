@@ -26,9 +26,9 @@ public class Book
     public string Author { get; set; }
     public string Series { get; set; }
     public int? PageCount { get; set; }
-    public string Owner { get; set; }
+    public virtual User Owner { get; set; }
     public GenresEnum? Genre { get; set; }
-    public string CurrentHolder { get; set; }
+    public virtual User? CurrentHolder { get; set; }
     public ConditionsEnum? Condition { get; set; }
     public FormatsEnum? Format { get; set; }
 

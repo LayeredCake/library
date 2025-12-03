@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LibraryAPI.Migrations
 {
-    [DbContext(typeof(BookContext))]
+    [DbContext(typeof(LibraryDbContext))]
     [Migration("20250720162107_EnumsAgain")]
     partial class EnumsAgain
     {

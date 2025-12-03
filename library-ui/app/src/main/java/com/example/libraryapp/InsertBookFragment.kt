@@ -22,7 +22,7 @@ class InsertBookFragment : Fragment() {
 
         val main_activity : MainActivity = getActivity() as MainActivity
 
-        val model: InsertBookViewModel by viewModels { InsertBookViewModelFactory(main_activity.rep) }
+        val model: InsertBookViewModel by viewModels { InsertBookViewModelFactory(main_activity.booksRepository) }
 
         val button: Button = view.findViewById(R.id.buttonCreateBook)
 

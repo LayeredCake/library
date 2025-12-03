@@ -37,9 +37,9 @@ class InsertBookViewModel (val repository: BooksRepository) : ViewModel() {
             author.value!!,
             series.value!!,
             pageCount.value!!.toInt(),
-            owner.value!!,
+            null,
             genre.value!!,
-            currentHolder.value!!,
+            null,
             condition.value!!,
             format.value!!,
             0
